@@ -216,4 +216,9 @@ areaText.y = 100
 -- color areaText
 areaText:setFillColor(0, 0, 0)
 ----------------------------------------------------------------------------------------
--- 
+-- smoke in chimney
+
+-- In the rubic - it says I will lose a patial level for putting in a picture instead of 
+-- a shape. I just wanted to note that I meant to put in a picture here, and this it is not
+-- in the place of a shape.
+

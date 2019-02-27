@@ -132,13 +132,16 @@ house.y = 517
 --set the color of house
 house:setFillColor(1, 0, 0)
 ------------------------------
--- window:(polygon)
+-- window:(rect)
 
--- create the local variables  x, y,
-local verticesWindow = {0,10, 0,20, 20,30, 30,40, 40,50, 50,60, 60,70, 70,0,}
+-- create the local variables
 local windowW = 200
-local windowH = 200
-local window = display.newPolygon(windowW, windowH, verticesWindow)
+local windowH = 100
+local window = display.newRect(0, 0, windowW, windowH)
+
+-- set the (x,y) of window
+window.x = 660
+window.y = 530
 ------------------------------
 -- roof: (polygon)
 
@@ -215,9 +218,4 @@ areaText.y = 100
 
 -- color areaText
 areaText:setFillColor(0, 0, 0)
-----------------------------------------------------------------------------------------
--- smoke in chimney
 
--- In the rubic - it says I will lose a patial level for putting in a picture instead of 
--- a shape. I just wanted to note that I meant to put in a picture here, and this it is not
--- in the place of a shape.

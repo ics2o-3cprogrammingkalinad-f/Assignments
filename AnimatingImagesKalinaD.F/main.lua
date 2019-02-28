@@ -16,15 +16,15 @@ local backgroundImage = display.newImageRect("Images/multiColorBackground.png", 
 -- character #1 (hummingbird)
 
 -- character image with width and height
-local hummingbird = display.newImageRect("Images/hummingbird.png", 200, 200)
+local hummingbird = display.newImageRect("Images/hummingbird.png", 100, 100)
 
 -- set the initial (x,y) positions of hummingbird
 hummingbird.x = 800
 hummingbird.y = 600
 
 -- set the scrollSpeed for the x and y values of hummingbird
-scrollSpeedXBird = -2
-scrollSpeedYBird = -2
+scrollSpeedXBird = -1
+scrollSpeedYBird = -1
 
 -- Function: MoveBird
 -- Input: this funcion accepts an event listener
@@ -40,4 +40,14 @@ end
 -- MoveBird will be called over and over again
 Runtime:addEventListener("enterFrame", MoveBird)
 -----------------------------------------------------------------------------------------
--- character
+-- character #2 (dog)
+
+-- character image with width and height
+local dog = display.newImageRect("Images/cartoonDog.png", 200, 200)
+
+-- set the initial (x,y) positions of dog
+dog.x = 100
+dog.y = 680
+
+-- make dog face left
+dog:scale(-1, 1)

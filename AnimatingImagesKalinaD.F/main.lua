@@ -26,18 +26,17 @@ hummingbird.y = 600
 scrollSpeedXBird = -1
 scrollSpeedYBird = -1
 
--- Function: MoveBird
--- Input: this funcion accepts an event listener
--- Output: none
--- Description: This function adds the scroll speed to the x and y value of hummingbird
+-- make bird move in a diagonal direction
 local function MoveBird(event)
+	
 	-- add the scroll speed to the x-value of hummingbird
 	hummingbird.x = hummingbird.x + scrollSpeedXBird
 	-- add the scroll speed to the y-value of hummingbird
+	
 	hummingbird.y = hummingbird.y + scrollSpeedYBird
 end
 
--- MoveBird will be called over and over again
+-- call MoveBird over and over again
 Runtime:addEventListener("enterFrame", MoveBird)
 -----------------------------------------------------------------------------------------
 -- character #2 (dog)
@@ -51,3 +50,32 @@ dog.y = 680
 
 -- make dog face left
 dog:scale(-1, 1)
+
+-- set the scroll speed
+local scrollSpeedDog = 2
+
+-- make dog move
+local function MoveDog(event)
+
+	-- add the scroll speed to the x-value of dog to move it right. Also make it repeat 
+	-- until dog reach x-value 900
+	repeat 
+		dog.x = dog.x + scrollSpeedDog
+	until (dog.x == 900)
+
+	-- flip the dog to face right
+	dog:scale(1, -1)
+
+	-- subract the scroll speed for the x-value of dog to move it left. Also make it repeat
+	-- until dog reaches x=value 100
+	repeat
+		dog.x = dog.x - scrollSpeedDog
+	until (dog.x == 100)
+
+	-- flip the dog to face left again
+	dog:scale(-1, 1)
+
+end
+
+-- call MoveDog over and over again
+Runtime:addEventListener("enterFrame", MoveDog)

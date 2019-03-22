@@ -170,7 +170,7 @@ local bkgMusic = audio.loadStream("Sounds/bkgMusic.mp3")
 -- play sound
 local function PlaySound()
 
-	--audio.play(bkgMusic)
+	audio.play(bkgMusic)
 
 end
 -----------------------------------------------------------------------------------------

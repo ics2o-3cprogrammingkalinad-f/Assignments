@@ -30,6 +30,9 @@ local questionCount
 local question = 0
 local operation = math.random(1, 3)
 
+-- create a temporary variable for the division calculations
+local temp
+
 -- variables for the timer
 local totalSeconds = 16
 local secondsLeft = 15
@@ -52,19 +55,134 @@ local brokenHeart3
 -----------------------------------------------------------------------------------------
 -- local functions
 
--- askquestion
+-- make the question
+local function AskQuestion()
+
+	-- set and re-set operation to another random number
+	operation = math.random(1, 7)
+
+	if (operation == 1) then -- addition
+
+	-- generate two random numbers between a max. and a min. number
+	randomNumber1 = math.random(10, 20)
+	randomNumber2 = math.random(10, 20)
+	
+	-- calculate correctAnswer and set its variable
+	correctAnswer = randomNumber1 + randomNumber2
+
+	-- create question in text object
+	questionObject.text = randomNumber1 .. " + " .. randomNumber2 .. " = "
+
+	elseif (operation == 2) then -- subtraction
+
+	-- generate two random numbers between a max. and a min. number
+	randomNumber1 = math.random(10, 20)
+	randomNumber2 = math.random(10, 20)
+
+		-- make sure the first number is greater than the last
+		repeat 
+			randomNumber1 = math.random(10, 20)
+			randomNumber2 = math.random(10, 20)
+		until (randomNumber1 >= randomNumber2)
+		while (randomNumber2 > randomNumber1)
+
+	-- calculate correctAnswer and set its variable
+	correctAnswer = randomNumber1 - randomNumber2
+
+	-- create question in text object
+	questionObject.text = randomNumber1 .. " - " .. randomNumber2 .. " = "
+
+	elseif (operation == 3) -- multiplication
+
+	-- generate two random numbers between a max. and a min. number
+	randomNumber1 = math.random(0, 10)
+	randomNumber2 = math.random(0, 10)
+
+	-- calculate correctAnswer and set its variable
+	correctAnswer = randomNumber1 * randomNumber2
+
+	-- create question in text object
+	questionObject.text = randomNumber1 .. " * " .. randomNumber2 .. " = "
+
+	elseif (operation == 4) then -- division
+		-- generate two random numbers between a max. and a min. number
+		randomNumber1 = math.random(0, 10)
+		randomNumber2 = math.random(0, 10)
+
+		-- set the question then switch randomNumber1 and correctAnswer
+		correctAnswer = randomNumber1 * randomNumber2
+		temp = randomNumber1
+		randomNumber1 = correctAnswer
+		correctAnswer = temp
+
+		-- create question in text object
+		questionObject.text = randomNumber1 .. " / " .. randomNumber2 .. " = "
+
+	elseif (operation == 5) then -- factorial
+
+		-- generate a random number
+		randomNumber1 = math.random(0, 10)
+
+		-- calculate correctAnswer
+		correctAnswer = randomNumber1 !
+
+		-- create question in text object
+		questionObject.text = randomNumber1 .."! ="
+
+	elseif (operation == 6) then -- square root
+
+		-- generate a random number
+		randomNumber1 = math.random(0, 10)
+
+		-- calculate correctAnswer
+		correctAnswer =  math.sqrt(randomNumber1)
+
+	end
+end
+
 
 local function IncreasePointCount()
 	-- create question in text object
 	question = question + 1
-	questionCount.text = "You have answered ".. question .." questions correctly"
+	questionCount.text = "Score count: ".. question
 
 end	
 
 local function UpdateLives()
 
-	-- make the whole hearts and the broken ones apear in their place
-	if (lives == 4)
+	-- make the whole hearts and the broken ones appear in their place
+	if (lives == 2) then
+		heart3.isVisible = false
+		brokenHeart3.isVisible = true
+	elseif (lives == 1) then
+		heart2.isVisible = false
+		brokenHeart2.isVisible = true
+	elseif (lives == 0) then
+		heart1.isVisible = false
+		brokenHeart3.isVisible = true
+		
+		-- when there are no more lives left
+
+		--stop the timer 
+		timer.cancel(countDownTimer)
+		
+		-- hide the timer
+		clockText.isVisible = false
+
+		-- hide the question (numeric text field included)
+		numericField.isVisible = false
+		questionObject.isVisible = false
+
+		-- show the youLose image
+		youLose.isVisible = true
+
+		-- play the youLoseSound
+		audio.play(youLoseSound)
+
+	end
+end
+
+
 
 local function HideCorrect()
 	-- hide the correct object
@@ -158,12 +276,15 @@ end
 questionObject = display.newText( "", display.contentWidth/3, display.contentHeight/2, ComicSans, 70)
 questionObject:setTextColor(0, 0, 0)
 
--- create the correct text object and make it invisible
-correctObject = display.newText("Correct!", display.contentWidth/2, display.contentHeight*2/3, nil, 50)
+-- create the correct text object and make it invisible. also set its color
+correctObject = display.newText("Correct!", display.contentCenterX, display.contentCenterY/3, nil, 50)
 correctObject:setTextColor(0, 1, 0)
 correctObject.isVisible = false
 
--- incorrect object
+-- create the incorrect text object and make it invisible. also set its color
+incorrectObject = display.newText("The correct answer was ".. correctAnswer, display.contentCenterX, display.contentCenterY/3, nil, 50)
+incorrectObject:setTextColor(1, 0, 0)
+incorrectObject.isVisible = false
 
 -- create numericField
 numericField = native.newTextField(560, 380, 150, 100)
@@ -173,7 +294,7 @@ numericField.inputType = "number"
 numericField:addEventListener("userInput", NumericFieldListener)
 
 -- display questionCount and set its color
-questionCount = display.newText( "You have answered ".. question .." questions correctly", display.contentWidth/2, 720, nil, 50)
+questionCount = display.newText( "Score count: ".. question, display.contentWidth/2, 720, nil, 50)
 questionCount:setTextColor(0, 0, 0)
 
 -- create the lives (whole hearts) to display on the screen

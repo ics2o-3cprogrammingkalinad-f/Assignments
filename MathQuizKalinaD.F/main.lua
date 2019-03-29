@@ -25,7 +25,7 @@ local numericField
 local randomNumber1
 local randomNumber2
 local userAnswer
-local correctAnswer
+local correctAnswer = ""
 local questionCount
 local question = 0
 local operation = math.random(1, 3)
@@ -39,8 +39,13 @@ local secondsLeft = 15
 local clockText 
 local countDownTimer
 
+-- variables for losing
 local youLose
 local youLoseSound
+
+-- variables for winning
+local youWin
+local youWinSound
 
 -- variables for the lives
 local lives = 3
@@ -59,7 +64,7 @@ local brokenHeart3
 local function AskQuestion()
 
 	-- set and re-set operation to another random number
-	operation = math.random(1, 7)
+	operation = math.random(1, 5)
 
 	if (operation == 1) then -- addition
 
@@ -86,13 +91,15 @@ local function AskQuestion()
 		until (randomNumber1 >= randomNumber2)
 		while (randomNumber2 > randomNumber1)
 
+		do end
+
 	-- calculate correctAnswer and set its variable
 	correctAnswer = randomNumber1 - randomNumber2
 
 	-- create question in text object
 	questionObject.text = randomNumber1 .. " - " .. randomNumber2 .. " = "
 
-	elseif (operation == 3) -- multiplication
+	elseif (operation == 3) then -- multiplication
 
 	-- generate two random numbers between a max. and a min. number
 	randomNumber1 = math.random(0, 10)
@@ -106,8 +113,8 @@ local function AskQuestion()
 
 	elseif (operation == 4) then -- division
 		-- generate two random numbers between a max. and a min. number
-		randomNumber1 = math.random(0, 10)
-		randomNumber2 = math.random(0, 10)
+		randomNumber1 = math.random(1, 10)
+		randomNumber2 = math.random(1, 10)
 
 		-- set the question then switch randomNumber1 and correctAnswer
 		correctAnswer = randomNumber1 * randomNumber2
@@ -115,27 +122,31 @@ local function AskQuestion()
 		randomNumber1 = correctAnswer
 		correctAnswer = temp
 
+
 		-- create question in text object
 		questionObject.text = randomNumber1 .. " / " .. randomNumber2 .. " = "
 
-	elseif (operation == 5) then -- factorial
+	elseif (operation == 5) then -- scquare root
 
-		-- generate a random number
-		randomNumber1 = math.random(0, 10)
-
-		-- calculate correctAnswer
-		correctAnswer = randomNumber1 !
-
-		-- create question in text object
-		questionObject.text = randomNumber1 .."! ="
-
-	elseif (operation == 6) then -- square root
-
-		-- generate a random number
+			-- generate a random number
 		randomNumber1 = math.random(0, 10)
 
 		-- calculate correctAnswer
 		correctAnswer =  math.sqrt(randomNumber1)
+
+		-- create question in text object
+		questionObject.text = "√".. randomNumber1 .." = "
+
+	--elseif (operation == 6) then -- factorial
+		
+		-- generate a random number
+		--randomNumber1 = math.random(0, 10)
+	
+		-- calculate correctAnswer
+		--correctAnswer = randomNumber1 !
+
+		-- create question in text object
+		--questionObject.text = randomNumber1 .."! ="
 
 	end
 end
@@ -146,6 +157,18 @@ local function IncreasePointCount()
 	question = question + 1
 	questionCount.text = "Score count: ".. question
 
+	if (question == 5) then
+		heart1.isVisible = false
+		heart2.isVisible = false
+		heart3.isVisible = false
+		brokenHeart1.isVisible = false
+		brokenHeart2.isVisible = false
+		brokenHeart3.isVisible = false
+		clockText.isVisible = false
+		numericField.isVisible = false
+		youWin.isVisible = true
+
+	end
 end	
 
 local function UpdateLives()
@@ -264,6 +287,7 @@ local function NumericFieldListener(event)
 			correctObject.isVisible = false
 			incorrectObject.isVisible = true
 			timer.performWithDelay(2000, HideIncorrect)
+			AskQuestion()
 
 		end
 	end
@@ -288,7 +312,7 @@ incorrectObject.isVisible = false
 
 -- create numericField
 numericField = native.newTextField(560, 380, 150, 100)
-numericField.inputType = "number" 
+numericField.inputType = "default" 
 
 -- add the event listener for the numeric field
 numericField:addEventListener("userInput", NumericFieldListener)
@@ -300,31 +324,31 @@ questionCount:setTextColor(0, 0, 0)
 -- create the lives (whole hearts) to display on the screen
 heart1 = display.newImageRect("Images/heart.png", 100, 100)
 heart1.x = 50
-heart1.y = 45
+heart1.y = 50
 
 heart2 = display.newImageRect("Images/heart.png", 100, 100)
 heart2.x = 150
-heart2.y = 45
+heart2.y = 50
 
 heart3 = display.newImageRect("Images/heart.png", 100, 100)
 heart3.x = 250
-heart3.y = 45
+heart3.y = 50
 
 -- create the lost lives (broken hearts) to display on the screen and make them invisible
 brokenHeart1 = display.newImageRect("Images/brokenHeart.png", 100, 100)
 brokenHeart1.x = 50
-brokenHeart1.y = 45
+brokenHeart1.y = 50
 brokenHeart1.isVisible = false
 
 brokenHeart2 = display.newImageRect("Images/brokenHeart.png", 100, 100)
 brokenHeart2.x = 150
-brokenHeart2.y = 45
-brokenHeart3.isVisible = false
+brokenHeart2.y = 50
+brokenHeart2.isVisible = false
 
 brokenHeart3 = display.newImageRect("Images/brokenHeart.png", 100, 100)
 brokenHeart3.x = 250
-brokenHeart3.y = 45
-brokenHeart2.isVisible = false
+brokenHeart3.y = 50
+brokenHeart3.isVisible = false
 
 -- display the timer
 clockText = display.newText(secondsLeft, 950, 45, nil, 70)
@@ -335,6 +359,12 @@ youLose = display.newImageRect("Images/youLose.png", 500, 500)
 youLose.x = display.contentWidth/2
 youLose.y = display.contentHeight/2
 youLose.isVisible = false
+
+-- create the winning image and make it invisible
+youWin = display.newImageRect("Images/youWin.png", 550, 500)
+youWin.x = display.contentWidth/2
+youWin.y = display.contentHeight/2
+youWin.isVisible = false
 -----------------------------------------------------------------------------------------
 -- function calls
 

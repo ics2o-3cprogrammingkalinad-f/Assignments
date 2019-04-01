@@ -25,7 +25,7 @@ local numericField
 local randomNumber1
 local randomNumber2
 local userAnswer
-local correctAnswer = ""
+local correctAnswer
 local questionCount
 local question = 0
 local operation = math.random(1, 3)
@@ -340,7 +340,7 @@ correctObject:setTextColor(0, 1, 0)
 correctObject.isVisible = false
 
 -- create the incorrect text object and make it invisible. also set its color
-incorrectObject = display.newText("The correct answer was ".. correctAnswer, display.contentCenterX, display.contentCenterY/3, nil, 50)
+incorrectObject = display.newText("The correct answer was " .. correctAnswer, display.contentCenterX, display.contentCenterY/3, nil, 50)
 incorrectObject:setTextColor(1, 0, 0)
 incorrectObject.isVisible = false
 

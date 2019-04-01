@@ -30,25 +30,30 @@ local questionCount
 local question = 0
 local operation = math.random(1, 3)
 
--- create a temporary variable for the division calculations
+-- create temporary variables for the division and square root calculations
 local temp
 
 -- variables for the timer
-local totalSeconds = 16
-local secondsLeft = 15
+local totalSeconds = 11
+local secondsLeft = 10
 local clockText 
 local countDownTimer
 
 -- variables for losing
 local youLose
+
+-- variables for sound
+local youWinSound
 local youLoseSound
+local wrongSound
+local rightSound
 
 -- variables for winning
 local youWin
-local youWinSound
 
 -- variables for the lives
 local lives = 3
+
 local heart1
 local heart2
 local heart3
@@ -134,6 +139,11 @@ local function AskQuestion()
 		-- calculate correctAnswer
 		correctAnswer =  math.sqrt(randomNumber1)
 
+		correctAnswer = randomNumber1 * randomNumber1
+		temp = correctAnswer
+		correctAnswer = randomNumber1
+		randomNumber1 = temp
+
 		-- create question in text object
 		questionObject.text = "√".. randomNumber1 .." = "
 
@@ -155,18 +165,36 @@ end
 local function IncreasePointCount()
 	-- create question in text object
 	question = question + 1
-	questionCount.text = "Score count: ".. question
+	questionCount.text = "Total points: ".. question
 
 	if (question == 5) then
+
+		-- hide the hearts and the broken hearts
 		heart1.isVisible = false
 		heart2.isVisible = false
 		heart3.isVisible = false
 		brokenHeart1.isVisible = false
 		brokenHeart2.isVisible = false
 		brokenHeart3.isVisible = false
+
+		-- hide the timer
 		clockText.isVisible = false
+
+		-- stop the timer
+		timer.cancel(countDownTimer)
+
+		-- hie the question (including numeric field)
+		questionObject.isVisible = false
 		numericField.isVisible = false
+
+		-- change the y-value of the score count
+		questionCount.y = 650
+
+		-- show the winning image
 		youWin.isVisible = true
+
+		-- play the winning sound
+		audio.play(youWinSound)
 
 	end
 end	
@@ -181,10 +209,10 @@ local function UpdateLives()
 		heart2.isVisible = false
 		brokenHeart2.isVisible = true
 	elseif (lives == 0) then
+		-- when there are no more lives left...
+
 		heart1.isVisible = false
 		brokenHeart3.isVisible = true
-		
-		-- when there are no more lives left
 
 		--stop the timer 
 		timer.cancel(countDownTimer)
@@ -196,10 +224,15 @@ local function UpdateLives()
 		numericField.isVisible = false
 		questionObject.isVisible = false
 
-		-- show the youLose image
+		-- hide the broken hearts
+		brokenHeart1.isVisible = false
+		brokenHeart2.isVisible = false
+		brokenHeart3.isVisible = false
+
+		-- show the losing image
 		youLose.isVisible = true
 
-		-- play the youLoseSound
+		-- play the losing sound
 		audio.play(youLoseSound)
 
 	end
@@ -281,13 +314,14 @@ local function NumericFieldListener(event)
 			correctObject.isVisible = true
 			incorrectObject.isVisible = false
 			IncreasePointCount()
+			audio.play(rightSound)
 			timer.performWithDelay(2000, HideCorrect)
 
 		else
 			correctObject.isVisible = false
 			incorrectObject.isVisible = true
+			audio.play(wrongSound)
 			timer.performWithDelay(2000, HideIncorrect)
-			AskQuestion()
 
 		end
 	end
@@ -301,7 +335,7 @@ questionObject = display.newText( "", display.contentWidth/3, display.contentHei
 questionObject:setTextColor(0, 0, 0)
 
 -- create the correct text object and make it invisible. also set its color
-correctObject = display.newText("Correct!", display.contentCenterX, display.contentCenterY/3, nil, 50)
+correctObject = display.newText ("Good job!", display.contentCenterX, display.contentCenterY/3, nil, 50)
 correctObject:setTextColor(0, 1, 0)
 correctObject.isVisible = false
 
@@ -311,14 +345,14 @@ incorrectObject:setTextColor(1, 0, 0)
 incorrectObject.isVisible = false
 
 -- create numericField
-numericField = native.newTextField(560, 380, 150, 100)
+numericField = native.newTextField(570, 380, 150, 100)
 numericField.inputType = "default" 
 
 -- add the event listener for the numeric field
 numericField:addEventListener("userInput", NumericFieldListener)
 
 -- display questionCount and set its color
-questionCount = display.newText( "Score count: ".. question, display.contentWidth/2, 720, nil, 50)
+questionCount = display.newText( "Total Points: ".. question, 300, 570, nil, 50)
 questionCount:setTextColor(0, 0, 0)
 
 -- create the lives (whole hearts) to display on the screen
@@ -351,7 +385,7 @@ brokenHeart3.y = 50
 brokenHeart3.isVisible = false
 
 -- display the timer
-clockText = display.newText(secondsLeft, 950, 45, nil, 70)
+clockText = display.newText(secondsLeft, 750, 570, nil, 70)
 clockText:setTextColor(0, 0, 0)
 
 -- create the losing image and make it invisible
@@ -362,9 +396,15 @@ youLose.isVisible = false
 
 -- create the winning image and make it invisible
 youWin = display.newImageRect("Images/youWin.png", 550, 500)
-youWin.x = display.contentWidth/2
-youWin.y = display.contentHeight/2
+youWin.x = 550
+youWin.y = 350
 youWin.isVisible = false
+
+-- load the sounds
+youWinSound = audio.loadStream("Sounds/cheer.mp3")
+youLoseSound = audio.loadStream("Sounds/crying.mp3")
+wrongSound = audio.loadStream("Sounds/raspberry.mp3")
+rightSound = audio.loadStream("Sounds/applause.mp3")
 -----------------------------------------------------------------------------------------
 -- function calls
 

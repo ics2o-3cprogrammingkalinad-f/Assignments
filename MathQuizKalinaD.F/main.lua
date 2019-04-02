@@ -151,7 +151,7 @@ local function AskQuestion()
 
 		-- generate two random numbers
 		randomNumber1 = math.random(0, 10)
-		randomNumber2 = math.random(0, 10)
+		randomNumber2 = math.random(0, 5)
 
 		-- calculate the correct answer and set its variable
 		correctAnswer = randomNumber1 ^ randomNumber2

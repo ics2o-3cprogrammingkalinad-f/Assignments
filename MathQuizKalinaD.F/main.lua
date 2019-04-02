@@ -34,7 +34,7 @@ local operation = math.random(1, 3)
 local temp
 
 -- variables for the timer
-local totalSeconds = 11
+local TOTAL_SECONDS = 11
 local secondsLeft = 10
 local clockText 
 local countDownTimer
@@ -69,7 +69,7 @@ local brokenHeart3
 local function AskQuestion()
 
 	-- set and re-set operation to another random number
-	operation = 6 --math.random(1, 6)
+	operation = math.random(1, 6)
 
 	if (operation == 1) then -- addition
 
@@ -162,7 +162,7 @@ local function AskQuestion()
 	end
 end
 
-
+-- increase the point count when called (when the users answer equals the correct answer)
 local function IncreasePointCount()
 	-- create question in text object
 	question = question + 1
@@ -200,9 +200,12 @@ local function IncreasePointCount()
 	end
 end	
 
+-- set the hearts to dissapear and appear accordingly and set what happens when the user
+-- loses all 3 hearts
 local function UpdateLives()
 
-	-- make the whole hearts and the broken ones appear in their place
+	-- make the whole hearts dissapear when the user loses a life and the broken ones 
+	-- appear in their place
 	if (lives == 2) then
 		heart3.isVisible = false
 		brokenHeart3.isVisible = true
@@ -238,8 +241,6 @@ local function UpdateLives()
 
 	end
 end
-
-
 
 local function HideCorrect()
 	-- hide the correct object
@@ -280,9 +281,14 @@ local function UpdateTime()
 	if (secondsLeft == 0) then
 
 		-- reset the number of seconds left
-		secondsLeft = totalSeconds
+		secondsLeft = TOTAL_SECONDS
 		lives = lives - 1
+		
+		-- make the user lose a life
 		UpdateLives()
+
+		-- ask another question
+		AskQuestion()
 
 	end
 end
@@ -295,6 +301,8 @@ local function StartTimer()
 
 end
 
+-- set the numeric text field to try to match up the users answer and the correct answer, 
+-- then call the functions accordingly
 local function NumericFieldListener(event)
 
 	-- user begins editing "numericField"
@@ -307,7 +315,7 @@ local function NumericFieldListener(event)
 
 		-- when the answer is submitted (enter key is pressed), set user input to userAnswer
 		userAnswer = tonumber(event.target.text)
-		secondsLeft = totalSeconds
+		secondsLeft = TOTAL_SECONDS
 		timer.pause(countDownTimer)
 
 		-- if the users answer and the correct answer are the same:
@@ -315,9 +323,8 @@ local function NumericFieldListener(event)
 			correctObject.isVisible = true
 			incorrectObject.isVisible = false
 			IncreasePointCount()
-			audio.play(rightSound)
 			timer.performWithDelay(2000, HideCorrect)
-
+			audio.play(rightSound)
 		else
 			correctObject.isVisible = false
 			incorrectObject.text = "The correct answer is " .. correctAnswer

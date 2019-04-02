@@ -69,25 +69,25 @@ local brokenHeart3
 local function AskQuestion()
 
 	-- set and re-set operation to another random number
-	operation = math.random(1, 5)
+	operation = 6 --math.random(1, 6)
 
 	if (operation == 1) then -- addition
 
-	-- generate two random numbers between a max. and a min. number
-	randomNumber1 = math.random(10, 20)
-	randomNumber2 = math.random(10, 20)
-	
-	-- calculate correctAnswer and set its variable
-	correctAnswer = randomNumber1 + randomNumber2
+		-- generate two random numbers between a max. and a min. number
+		randomNumber1 = math.random(10, 20)
+		randomNumber2 = math.random(10, 20)
+		
+		-- calculate correctAnswer and set its variable
+		correctAnswer = randomNumber1 + randomNumber2
 
-	-- create question in text object
-	questionObject.text = randomNumber1 .. " + " .. randomNumber2 .. " = "
+		-- create question in text object
+		questionObject.text = randomNumber1 .. " + " .. randomNumber2 .. " = "
 
 	elseif (operation == 2) then -- subtraction
 
-	-- generate two random numbers between a max. and a min. number
-	randomNumber1 = math.random(10, 20)
-	randomNumber2 = math.random(10, 20)
+		-- generate two random numbers between a max. and a min. number
+		randomNumber1 = math.random(10, 20)
+		randomNumber2 = math.random(10, 20)
 
 		-- make sure the first number is greater than the last
 		repeat 
@@ -98,23 +98,23 @@ local function AskQuestion()
 
 		do end
 
-	-- calculate correctAnswer and set its variable
-	correctAnswer = randomNumber1 - randomNumber2
+		-- calculate correctAnswer and set its variable
+		correctAnswer = randomNumber1 - randomNumber2
 
-	-- create question in text object
-	questionObject.text = randomNumber1 .. " - " .. randomNumber2 .. " = "
+		-- create question in text object
+		questionObject.text = randomNumber1 .. " - " .. randomNumber2 .. " = "
 
 	elseif (operation == 3) then -- multiplication
 
-	-- generate two random numbers between a max. and a min. number
-	randomNumber1 = math.random(0, 10)
-	randomNumber2 = math.random(0, 10)
+		-- generate two random numbers between a max. and a min. number
+		randomNumber1 = math.random(0, 10)
+		randomNumber2 = math.random(0, 10)
 
-	-- calculate correctAnswer and set its variable
-	correctAnswer = randomNumber1 * randomNumber2
+		-- calculate correctAnswer and set its variable
+		correctAnswer = randomNumber1 * randomNumber2
 
-	-- create question in text object
-	questionObject.text = randomNumber1 .. " * " .. randomNumber2 .. " = "
+		-- create question in text object
+		questionObject.text = randomNumber1 .. " * " .. randomNumber2 .. " = "
 
 	elseif (operation == 4) then -- division
 		-- generate two random numbers between a max. and a min. number
@@ -147,16 +147,17 @@ local function AskQuestion()
 		-- create question in text object
 		questionObject.text = "√".. randomNumber1 .." = "
 
-	--elseif (operation == 6) then -- factorial
-		
-		-- generate a random number
-		--randomNumber1 = math.random(0, 10)
-	
-		-- calculate correctAnswer
-		--correctAnswer = randomNumber1 !
+	elseif (operation == 6) then
+
+		-- generate two random numbers
+		randomNumber1 = math.random(0, 10)
+		randomNumber2 = math.random(0, 10)
+
+		-- calculate the correct answer and set its variable
+		correctAnswer = randomNumber1 ^ randomNumber2
 
 		-- create question in text object
-		--questionObject.text = randomNumber1 .."! ="
+		questionObject.text = randomNumber1 .. "^" .. randomNumber2 .. " = "
 
 	end
 end
@@ -319,6 +320,7 @@ local function NumericFieldListener(event)
 
 		else
 			correctObject.isVisible = false
+			incorrectObject.text = "The correct answer is " .. correctAnswer
 			incorrectObject.isVisible = true
 			audio.play(wrongSound)
 			timer.performWithDelay(2000, HideIncorrect)
@@ -340,7 +342,7 @@ correctObject:setTextColor(0, 1, 0)
 correctObject.isVisible = false
 
 -- create the incorrect text object and make it invisible. also set its color
-incorrectObject = display.newText("The correct answer was " .. correctAnswer, display.contentCenterX, display.contentCenterY/3, nil, 50)
+incorrectObject = display.newText("The correct answer is ", display.contentCenterX, display.contentCenterY/2, nil, 50)
 incorrectObject:setTextColor(1, 0, 0)
 incorrectObject.isVisible = false
 
@@ -404,7 +406,7 @@ youWin.isVisible = false
 youWinSound = audio.loadStream("Sounds/cheer.mp3")
 youLoseSound = audio.loadStream("Sounds/crying.mp3")
 wrongSound = audio.loadStream("Sounds/raspberry.mp3")
-rightSound = audio.loadStream("Sounds/applause.mp3")
+rightSound = audio.loadStream("Sounds/yay.mp3")
 -----------------------------------------------------------------------------------------
 -- function calls
 

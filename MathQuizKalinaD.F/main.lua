@@ -7,7 +7,8 @@
 -- or the timer runs out, they lose a life and they get asked a new question. If the user
 -- asnwers 5 questions correctly without lossing all 3 lives, they win the game
 -----------------------------------------------------------------------------------------
--- setup
+-- SETUP
+-----------------------------------------------------------------------------------------
 
 -- hide the status bar
 display.setStatusBar(display.HiddenStatusBar)
@@ -15,7 +16,8 @@ display.setStatusBar(display.HiddenStatusBar)
 -- set the background
 display.setDefault("background", 204/255, 229/255, 1)
 -----------------------------------------------------------------------------------------
--- local variables
+-- LOCAL VARIABLES
+-----------------------------------------------------------------------------------------
 
 -- variables for the question
 local questionObject
@@ -63,7 +65,8 @@ local brokenHeart1
 local brokenHeart2
 local brokenHeart3
 -----------------------------------------------------------------------------------------
--- local functions
+-- LOCAL FUNCTIONS
+-----------------------------------------------------------------------------------------
 
 -- make the question
 local function AskQuestion()
@@ -337,7 +340,8 @@ local function NumericFieldListener(event)
 end
 
 -----------------------------------------------------------------------------------------
--- object creation
+-- OBJECT CREATION
+-----------------------------------------------------------------------------------------
 
 -- displays a question and sets its color
 questionObject = display.newText( "", display.contentWidth/3, display.contentHeight/2, ComicSans, 70)
@@ -415,7 +419,8 @@ youLoseSound = audio.loadStream("Sounds/crying.mp3")
 wrongSound = audio.loadStream("Sounds/raspberry.mp3")
 rightSound = audio.loadStream("Sounds/yay.mp3")
 -----------------------------------------------------------------------------------------
--- function calls
+-- FUNCTION CALLS
+-----------------------------------------------------------------------------------------
 
 -- call the function to ask the question
 AskQuestion()

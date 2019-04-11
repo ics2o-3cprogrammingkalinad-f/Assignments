@@ -22,12 +22,8 @@ bkg.y = 0
 local companyLogo
 local companyLogoScrollSpeed = 3
 local RMGames
-local smokeFromCar
-local smokeFromCarScrollSpeed = companyLogoScrollSpeed
-local smokeCover
-local smokeCoverGrowSpeed = companyLogoScrollSpeed
-local smokeCoverScrollSpeed
-local sound
+local smoke
+local smokeScrollSpeed = companyLogoScrollSpeed
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -41,11 +37,15 @@ end
 -- moke the smoke coming ut of the car at the same time and with the same speed as companyLogo
 local function MoveSmokeFromCar(event)
 	-- make the smokeFromCar follow the car
-	smokeFromCar.x = companyLogo.x - 25
+	smoke.x = companyLogo.x - 25
 
 end
 
---local function 
+-- this function displays "RM Games" after the smoke from the car
+local function ShowName(event)
+	-- make RMGames follow smoke 
+	
+
 
 Runtime:addEventListener("enterFrame", MoveLogo)
 Runtime:addEventListener("enterFrame", MoveSmokeFromCar)
@@ -60,10 +60,10 @@ companyLogo.y = 600
 
 -- create the smoke that will be coming out the back of the car, flip it, and set its
 --x and y values
-smokeFromCar = display.newImageRect("Images/smoke.png", 150, 100)
-smokeFromCar:scale(-1, 1)
-smokeFromCar.x = companyLogo.x - 25
-smokeFromCar.y = 590
+smoke = display.newImageRect("Images/smoke.png", 150, 100)
+smoke:scale(-1, 1)
+smoke.x = companyLogo.x - 25
+smoke.y = 590
 -----------------------------------------------------------------------------------------
 -- CALL FUNCTIONS
 -----------------------------------------------------------------------------------------

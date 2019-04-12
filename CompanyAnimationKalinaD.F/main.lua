@@ -44,7 +44,13 @@ end
 -- this function displays "RM Games" after the smoke from the car
 local function ShowName(event)
 	-- make RMGames follow smoke 
-	
+	RMGames.x = smoke.x - 25
+
+	-- when RMGames reaches the middle of the screen, stop it
+	if (RMGames.x == display.contentWidth/2) then
+
+	end
+end
 
 
 Runtime:addEventListener("enterFrame", MoveLogo)

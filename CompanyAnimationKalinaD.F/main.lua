@@ -10,15 +10,10 @@
 -- hide the status bar
 display.setStatusBar(display.HiddenStatusBar)
 
--- set the background image then make it cover the whole screen
-	local bkg = display.newImageRect("Images/bkgImage.jpg", display.contentWidth, display.contentHeight)
-	bkg.anchorX = 0
-	bkg.anchorY = 0
-	bkg.x = 0
-	bkg.y = 0
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
+local bkg
 local companyLogo
 local scrollSpeedX = 5
 local scrollSpeedY = 3
@@ -74,7 +69,7 @@ local function MoveName(event)
 	repeat
 		companyName.x = companyName.x - scrollSpeedX
 		companyName.y = companyName.y - scrollSpeedY
-	until (RMGamesyx == display.contentHeight/2)
+	until (companyName.y >= display.contentHeight/2)
 
 		-- once companyName reaches the middle of the height of the screen, make it
 		-- completly move to the middle
@@ -97,6 +92,13 @@ end
 -----------------------------------------------------------------------------------------
 -- OBJECT CREATION
 -----------------------------------------------------------------------------------------
+-- set the background image then make it cover the whole screen
+	bkg = display.newImageRect("Images/bkgImage.jpg", display.contentWidth, display.contentHeight)
+	bkg.anchorX = 0
+	bkg.anchorY = 0
+	bkg.x = 0
+	bkg.y = 0
+
 -- create the car
 	companyLogo = display.newImageRect("Images/companyLogo.png", 200, 100)
 	

@@ -35,7 +35,7 @@ local function MoveLogo(event)
 
 end
 
--- this function makes the logo grow bigger and become more opaque when the logoa x and y
+-- this function makes the logo grow bigger and become more opaque when the logos x and y
 -- values increase
 local function LogoEffects(event)
 	-- make the companyLogo grow bigger as its x and y values increase
@@ -110,7 +110,7 @@ end
 	-- make the company logo start off as invisible/transparent
 	companyLogo.alpha = 0
 
-	-- make the car face down a little bit
+	-- make the car rotate to face down a little bit
 	companyLogo:rotate(20)
 
 -- create the smoke that will be coming out the back of the car
@@ -139,7 +139,7 @@ end
 	-- make companyName start off as invisible/transparent
 	companyName.alpha = 0
 
-	-- make it face down a little bit
+	-- make it rotate face down a little bit
 	companyName:rotate(20)
 -----------------------------------------------------------------------------------------
 -- CALL FUNCTIONS

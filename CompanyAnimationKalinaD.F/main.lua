@@ -68,97 +68,170 @@ local spectatorUp9
 
 local spectatorDown10
 local spectatorUp10
------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
------------------------------------------------------------------------------------------
--- main logo
------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------
+
 -- moves the car to the right and down, and makes it fade in and grow
 local function MoveLogo(event)
-	-- add the the x and y values of companyLogo
-	companyLogo.x = companyLogo.x + companyLogoScrollSpeedX
-	companyLogo.y = companyLogo.y + companyLogoScrollSpeedY
+    -- add the the x and y values of companyLogo
+    companyLogo.x = companyLogo.x + companyLogoScrollSpeedX
+    companyLogo.y = companyLogo.y + companyLogoScrollSpeedY
 
-	-- make the companyLogo grow bigger as its x and y values increase
-	companyLogo.width = companyLogo.width + 2
-	companyLogo.height = companyLogo.height + 1
+    -- make the companyLogo grow bigger as its x and y values increase
+    companyLogo.width = companyLogo.width + 2
+    companyLogo.height = companyLogo.height + 1
 
-	-- make the companyLogo more visible as its x and y values increase
-	companyLogo.alpha = companyLogo.alpha + .05
+    -- make the companyLogo more visible as its x and y values increase
+    companyLogo.alpha = companyLogo.alpha + .05
 
 end
 
 -- moves the smoke to the right and down, and makes it fade in and grow
 local function MoveSmoke(event)
-	-- make the smoke follow the car
-	smoke.x = smoke.x + smokeScrollSpeedX
-	smoke.y = smoke.y + smokeScrollSpeedY
+    -- make the smoke follow the car
+    smoke.x = smoke.x + smokeScrollSpeedX
+    smoke.y = smoke.y + smokeScrollSpeedY
 
-	-- make the smoke grow bigger as its x and y values increase
-	smoke.width = smoke.width + 2
-	smoke.height = smoke.height + 1
+    -- make the smoke grow bigger as its x and y values increase
+    smoke.width = smoke.width + 2
+    smoke.height = smoke.height + 1
 
-	-- make the smoke more visible as its x and y values increase
-	smoke.alpha = smoke.alpha + 0.5
+    -- make the smoke more visible as its x and y values increase
+    smoke.alpha = smoke.alpha + 0.5
 
 end
 
 -- moves the company name to the right and down, and makes it fade in and grow
 local function MoveName(event)
-	companyName.x = companyName.x + companyNameScrollSpeedX
-	companyName.y = companyName.y + companyNameScrollSpeedY
+    companyName.x = companyName.x + companyNameScrollSpeedX
+    companyName.y = companyName.y + companyNameScrollSpeedY
 
-	-- make the companyName grow bigger as its x and y values increase
-	companyName.width = companyName.width + 2
-	companyName.height = companyName.height + 1
+    -- make the companyName grow bigger as its x and y values increase
+    companyName.width = companyName.width + 2
+    companyName.height = companyName.height + 1
 
-	-- make the companyName more visible as its x and y values increase
-	companyName.alpha = companyName.alpha + 0.5
+    -- make the companyName more visible as its x and y values increase
+    companyName.alpha = companyName.alpha + 0.5
 
 end
 
 -- this function plays the sound
 local function PlaySound()
-	audio.play(carRacing)
+    audio.play(carRacing)
 
+end
+
+-- this function goes to the main_menu
+local function gotoMainMenu(  )
+    composer.gotoScene("main_menu")
 end
 -----------------------------------------------------------------------------------------
 -- extra animations
 
 -- this function moves the blimp, very slowly, across the top of the screen
 local function MoveBlimp(event)
-	blimp.x = blimp.x + blimpScrollSpeed
+    blimp.x = blimp.x + blimpScrollSpeed
 
 end
+-----------------------------------------
+-- spectators
+
+-- this function calls the function to make a spectator jump into the air
+local function MoveSpectator1()
+    -- call the first function to move the spectator
+    timer.performWithDelay(0, SpectatorJump1)
+
+end
+
+-- this function calls the function to make a spectator jump into the air
+local function MoveSpectator2()
+    -- call the first function to move the spectator
+    timer.performWithDelay(0, SpectatorJump2)
+
+end
+
+-- this function calls the function to make a spectator jump into the air
+local function MoveSpectator3()
+    -- call the first function to move the spectator
+    timer.performWithDelay(0, SpectatorJump3)
+
+end
+
+-- this function calls the function to make a spectator jump into the air
+local function MoveSpectator4()
+    -- call the first function to move the spectator
+    timer.performWithDelay(0, SpectatorJump4)
+
+end
+
+-- this function calls the function to make a spectator jump into the air
+local function MoveSpectator5()
+    -- call the first function to move the spectator
+    timer.performWithDelay(0, SpectatorJump5)
+
+end
+
+-- this function calls the function to make a spectator jump into the air
+local function MoveSpectator6()
+    -- call the first function to move the spectator
+    timer.performWithDelay(0, SpectatorJump6)
+
+end
+
+-- this function calls the function to make a spectator jump into the air
+local function MoveSpectator7()
+    -- call the first function to move the spectator
+    timer.performWithDelay(0, SpectatorJump7)
+
+end
+
+-- this function calls the function to make a spectator jump into the air
+local function MoveSpectator8()
+    -- call the first function to move the spectator
+    timer.performWithDelay(0, SpectatorJump8)
+
+end
+
+-- this function calls the function to make a spectator jump into the air
+local function MoveSpectator9()
+    -- call the first function to move the spectator
+    timer.performWithDelay(0, SpectatorJump9)
+
+end
+
+-- this function calls the function to make a spectator jump into the air
+local function MoveSpectator10()
+    -- call the first function to move the spectator
+    timer.performWithDelay(0, SpectatorJump10)
+
+end
+--------------------------------------------------------------------------------------------
+-- GLOBAL FUNCTIONS
+--------------------------------------------------------------------------------------------
+
 --------------------------------------------
 --spectator 1
 
 -- this function makes the spectator jump into the air with their arms raised
 function SpectatorJump1()
-	-- make spectatorDown invisible and spectatorUp visible
-	spectatorDown1.isVisible = false
-	spectatorUp1.isVisible = true
+    -- make spectatorDown invisible and spectatorUp visible
+    spectatorDown1.isVisible = false
+    spectatorUp1.isVisible = true
 
-	-- wait half a second then call the SpectatorLand function
-	timer.performWithDelay(500, SpectatorLand1)
+    -- wait half a second then call the SpectatorLand function
+    timer.performWithDelay(500, SpectatorLand1)
 
 end
 
 --this function makes the spectator land and put his arms down
 function SpectatorLand1()
-	-- make spectatorUp invisible and spectatorDown visible
-	spectatorUp1.isVisible = false
-	spectatorDown1.isVisible = true
+    -- make spectatorUp invisible and spectatorDown visible
+    spectatorUp1.isVisible = false
+    spectatorDown1.isVisible = true
 
-	-- wait half a second then call the SpectatorJump function
-	timer.performWithDelay(500, SpectatorJump1)
-
-end
-
--- this function calls the function to make a spectator jump into the air
-local function MoveSpectator1()
-	-- call the first function to move the spectator
-	timer.performWithDelay(0, SpectatorJump1)
+    -- wait half a second then call the SpectatorJump function
+    timer.performWithDelay(500, SpectatorJump1)
 
 end
 --------------------------------------------
@@ -166,30 +239,23 @@ end
 
 -- this function makes the spectator jump into the air with their arms raised
 function SpectatorJump2()
-	-- make spectatorDown invisible and spectatorUp visible
-	spectatorDown2.isVisible = false
-	spectatorUp2.isVisible = true
+    -- make spectatorDown invisible and spectatorUp visible
+    spectatorDown2.isVisible = false
+    spectatorUp2.isVisible = true
 
-	-- wait half a second then call the SpectatorLand function
-	timer.performWithDelay(500, SpectatorLand2)
+    -- wait half a second then call the SpectatorLand function
+    timer.performWithDelay(500, SpectatorLand2)
 
 end
 
 --this function makes the spectator land and put his arms down
 function SpectatorLand2()
-	-- make spectatorUp invisible and spectatorDown visible
-	spectatorUp2.isVisible = false
-	spectatorDown2.isVisible = true
+    -- make spectatorUp invisible and spectatorDown visible
+    spectatorUp2.isVisible = false
+    spectatorDown2.isVisible = true
 
-	-- wait half a second then call the SpectatorJump function
-	timer.performWithDelay(500, SpectatorJump2)
-
-end
-
--- this function calls the function to make a spectator jump into the air
-local function MoveSpectator2()
-	-- call the first function to move the spectator
-	timer.performWithDelay(0, SpectatorJump2)
+    -- wait half a second then call the SpectatorJump function
+    timer.performWithDelay(500, SpectatorJump2)
 
 end
 --------------------------------------------
@@ -197,30 +263,23 @@ end
 
 -- this function makes the spectator jump into the air with their arms raised
 function SpectatorJump3()
-	-- make spectatorDown invisible and spectatorUp visible
-	spectatorDown3.isVisible = false
-	spectatorUp3.isVisible = true
+    -- make spectatorDown invisible and spectatorUp visible
+    spectatorDown3.isVisible = false
+    spectatorUp3.isVisible = true
 
-	-- wait half a second then call the SpectatorLand function
-	timer.performWithDelay(500, SpectatorLand3)
+    -- wait half a second then call the SpectatorLand function
+    timer.performWithDelay(500, SpectatorLand3)
 
 end
 
 --this function makes the spectator land and put his arms down
 function SpectatorLand3()
-	-- make spectatorUp invisible and spectatorDown visible
-	spectatorUp3.isVisible = false
-	spectatorDown3.isVisible = true
+    -- make spectatorUp invisible and spectatorDown visible
+    spectatorUp3.isVisible = false
+    spectatorDown3.isVisible = true
 
-	-- wait half a second then call the SpectatorJump function
-	timer.performWithDelay(500, SpectatorJump3)
-
-end
-
--- this function calls the function to make a spectator jump into the air
-local function MoveSpectator3()
-	-- call the first function to move the spectator
-	timer.performWithDelay(0, SpectatorJump3)
+    -- wait half a second then call the SpectatorJump function
+    timer.performWithDelay(500, SpectatorJump3)
 
 end
 --------------------------------------------
@@ -228,30 +287,23 @@ end
 
 -- this function makes the spectator jump into the air with their arms raised
 function SpectatorJump4()
-	-- make spectatorDown invisible and spectatorUp visible
-	spectatorDown4.isVisible = false
-	spectatorUp4.isVisible = true
+    -- make spectatorDown invisible and spectatorUp visible
+    spectatorDown4.isVisible = false
+    spectatorUp4.isVisible = true
 
-	-- wait half a second then call the SpectatorLand function
-	timer.performWithDelay(500, SpectatorLand4)
+    -- wait half a second then call the SpectatorLand function
+    timer.performWithDelay(500, SpectatorLand4)
 
 end
 
 --this function makes the spectator land and put his arms down
 function SpectatorLand4()
-	-- make spectatorUp invisible and spectatorDown visible
-	spectatorUp4.isVisible = false
-	spectatorDown4.isVisible = true
+    -- make spectatorUp invisible and spectatorDown visible
+    spectatorUp4.isVisible = false
+    spectatorDown4.isVisible = true
 
-	-- wait half a second then call the SpectatorJump function
-	timer.performWithDelay(500, SpectatorJump4)
-
-end
-
--- this function calls the function to make a spectator jump into the air
-local function MoveSpectator4()
-	-- call the first function to move the spectator
-	timer.performWithDelay(0, SpectatorJump4)
+    -- wait half a second then call the SpectatorJump function
+    timer.performWithDelay(500, SpectatorJump4)
 
 end
 --------------------------------------------
@@ -259,30 +311,23 @@ end
 
 -- this function makes the spectator jump into the air with their arms raised
 function SpectatorJump5()
-	-- make spectatorDown invisible and spectatorUp visible
-	spectatorDown5.isVisible = false
-	spectatorUp5.isVisible = true
+    -- make spectatorDown invisible and spectatorUp visible
+    spectatorDown5.isVisible = false
+    spectatorUp5.isVisible = true
 
-	-- wait half a second then call the SpectatorLand function
-	timer.performWithDelay(500, SpectatorLand5)
+    -- wait half a second then call the SpectatorLand function
+    timer.performWithDelay(500, SpectatorLand5)
 
 end
 
 --this function makes the spectator land and put his arms down
 function SpectatorLand5()
-	-- make spectatorUp invisible and spectatorDown visible
-	spectatorUp5.isVisible = false
-	spectatorDown5.isVisible = true
+    -- make spectatorUp invisible and spectatorDown visible
+    spectatorUp5.isVisible = false
+    spectatorDown5.isVisible = true
 
-	-- wait half a second then call the SpectatorJump function
-	timer.performWithDelay(500, SpectatorJump5)
-
-end
-
--- this function calls the function to make a spectator jump into the air
-local function MoveSpectator5()
-	-- call the first function to move the spectator
-	timer.performWithDelay(0, SpectatorJump5)
+    -- wait half a second then call the SpectatorJump function
+    timer.performWithDelay(500, SpectatorJump5)
 
 end
 --------------------------------------------
@@ -290,30 +335,23 @@ end
 
 -- this function makes the spectator jump into the air with their arms raised
 function SpectatorJump6()
-	-- make spectatorDown invisible and spectatorUp visible
-	spectatorDown6.isVisible = false
-	spectatorUp6.isVisible = true
+    -- make spectatorDown invisible and spectatorUp visible
+    spectatorDown6.isVisible = false
+    spectatorUp6.isVisible = true
 
-	-- wait half a second then call the SpectatorLand function
-	timer.performWithDelay(500, SpectatorLand6)
+    -- wait half a second then call the SpectatorLand function
+    timer.performWithDelay(500, SpectatorLand6)
 
 end
 
 --this function makes the spectator land and put his arms down
 function SpectatorLand6()
-	-- make spectatorUp invisible and spectatorDown visible
-	spectatorUp6.isVisible = false
-	spectatorDown6.isVisible = true
+    -- make spectatorUp invisible and spectatorDown visible
+    spectatorUp6.isVisible = false
+    spectatorDown6.isVisible = true
 
-	-- wait half a second then call the SpectatorJump function
-	timer.performWithDelay(500, SpectatorJump6)
-
-end
-
--- this function calls the function to make a spectator jump into the air
-local function MoveSpectator6()
-	-- call the first function to move the spectator
-	timer.performWithDelay(0, SpectatorJump6)
+    -- wait half a second then call the SpectatorJump function
+    timer.performWithDelay(500, SpectatorJump6)
 
 end
 --------------------------------------------
@@ -321,30 +359,23 @@ end
 
 -- this function makes the spectator jump into the air with their arms raised
 function SpectatorJump7()
-	-- make spectatorDown invisible and spectatorUp visible
-	spectatorDown7.isVisible = false
-	spectatorUp7.isVisible = true
+    -- make spectatorDown invisible and spectatorUp visible
+    spectatorDown7.isVisible = false
+    spectatorUp7.isVisible = true
 
-	-- wait half a second then call the SpectatorLand function
-	timer.performWithDelay(500, SpectatorLand7)
+    -- wait half a second then call the SpectatorLand function
+    timer.performWithDelay(500, SpectatorLand7)
 
 end
 
 --this function makes the spectator land and put his arms down
 function SpectatorLand7()
-	-- make spectatorUp invisible and spectatorDown visible
-	spectatorUp7.isVisible = false
-	spectatorDown7.isVisible = true
+    -- make spectatorUp invisible and spectatorDown visible
+    spectatorUp7.isVisible = false
+    spectatorDown7.isVisible = true
 
-	-- wait half a second then call the SpectatorJump function
-	timer.performWithDelay(500, SpectatorJump7)
-
-end
-
--- this function calls the function to make a spectator jump into the air
-local function MoveSpectator7()
-	-- call the first function to move the spectator
-	timer.performWithDelay(0, SpectatorJump7)
+    -- wait half a second then call the SpectatorJump function
+    timer.performWithDelay(500, SpectatorJump7)
 
 end
 --------------------------------------------
@@ -352,30 +383,23 @@ end
 
 -- this function makes the spectator jump into the air with their arms raised
 function SpectatorJump8()
-	-- make spectatorDown invisible and spectatorUp visible
-	spectatorDown8.isVisible = false
-	spectatorUp8.isVisible = true
+    -- make spectatorDown invisible and spectatorUp visible
+    spectatorDown8.isVisible = false
+    spectatorUp8.isVisible = true
 
-	-- wait half a second then call the SpectatorLand function
-	timer.performWithDelay(500, SpectatorLand8)
+    -- wait half a second then call the SpectatorLand function
+    timer.performWithDelay(500, SpectatorLand8)
 
 end
 
 --this function makes the spectator land and put his arms down
 function SpectatorLand8()
-	-- make spectatorUp invisible and spectatorDown visible
-	spectatorUp8.isVisible = false
-	spectatorDown8.isVisible = true
+    -- make spectatorUp invisible and spectatorDown visible
+    spectatorUp8.isVisible = false
+    spectatorDown8.isVisible = true
 
-	-- wait half a second then call the SpectatorJump function
-	timer.performWithDelay(500, SpectatorJump8)
-
-end
-
--- this function calls the function to make a spectator jump into the air
-local function MoveSpectator8()
-	-- call the first function to move the spectator
-	timer.performWithDelay(0, SpectatorJump8)
+    -- wait half a second then call the SpectatorJump function
+    timer.performWithDelay(500, SpectatorJump8)
 
 end
 --------------------------------------------
@@ -383,30 +407,23 @@ end
 
 -- this function makes the spectator jump into the air with their arms raised
 function SpectatorJump9()
-	-- make spectatorDown invisible and spectatorUp visible
-	spectatorDown9.isVisible = false
-	spectatorUp9.isVisible = true
+    -- make spectatorDown invisible and spectatorUp visible
+    spectatorDown9.isVisible = false
+    spectatorUp9.isVisible = true
 
-	-- wait half a second then call the SpectatorLand function
-	timer.performWithDelay(500, SpectatorLand9)
+    -- wait half a second then call the SpectatorLand function
+    timer.performWithDelay(500, SpectatorLand9)
 
 end
 
 --this function makes the spectator land and put his arms down
 function SpectatorLand9()
-	-- make spectatorUp invisible and spectatorDown visible
-	spectatorUp9.isVisible = false
-	spectatorDown9.isVisible = true
+    -- make spectatorUp invisible and spectatorDown visible
+    spectatorUp9.isVisible = false
+    spectatorDown9.isVisible = true
 
-	-- wait half a second then call the SpectatorJump function
-	timer.performWithDelay(500, SpectatorJump9)
-
-end
-
--- this function calls the function to make a spectator jump into the air
-local function MoveSpectator9()
-	-- call the first function to move the spectator
-	timer.performWithDelay(0, SpectatorJump9)
+    -- wait half a second then call the SpectatorJump function
+    timer.performWithDelay(500, SpectatorJump9)
 
 end
 --------------------------------------------
@@ -414,32 +431,37 @@ end
 
 -- this function makes the spectator jump into the air with their arms raised
 function SpectatorJump10()
-	-- make spectatorDown invisible and spectatorUp visible
-	spectatorDown10.isVisible = false
-	spectatorUp10.isVisible = true
+    -- make spectatorDown invisible and spectatorUp visible
+    spectatorDown10.isVisible = false
+    spectatorUp10.isVisible = true
 
-	-- wait half a second then call the SpectatorLand function
-	timer.performWithDelay(500, SpectatorLand10)
+    -- wait half a second then call the SpectatorLand function
+    timer.performWithDelay(500, SpectatorLand10)
 
 end
 
 --this function makes the spectator land and put his arms down
 function SpectatorLand10()
-	-- make spectatorUp invisible and spectatorDown visible
-	spectatorUp10.isVisible = false
-	spectatorDown10.isVisible = true
+    -- make spectatorUp invisible and spectatorDown visible
+    spectatorUp10.isVisible = false
+    spectatorDown10.isVisible = true
 
-	-- wait half a second then call the SpectatorJump function
-	timer.performWithDelay(500, SpectatorJump10)
-
-end
-
--- this function calls the function to make a spectator jump into the air
-local function MoveSpectator10()
-	-- call the first function to move the spectator
-	timer.performWithDelay(0, SpectatorJump10)
+    -- wait half a second then call the SpectatorJump function
+    timer.performWithDelay(500, SpectatorJump10)
 
 end
+-----------------------------------------------------------------------------------------
+-- GLOBAL SCENE FUNCTIONS
+-----------------------------------------------------------------------------------------
+
+-- The function called when the screen doesn't exist
+function scene:create( event )
+
+    -- Creating a group that associates objects with the scene
+    local sceneGroup = self.view
+
+    -- set the background to be black
+    display.setDefault("background", 0, 0, 0)
 -----------------------------------------------------------------------------------------
 -- OBJECT CREATION
 -----------------------------------------------------------------------------------------

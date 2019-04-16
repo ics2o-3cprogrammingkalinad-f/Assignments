@@ -2,8 +2,8 @@
 -- Title: CompanyAnimation
 -- Name: Kalina Dunne Farrell
 -- Course: ICS2O
--- This program is the logo of RM Games. It is a car racing accross the screan, leaving 
---behind smoke. When this smoke clears "RM Games" is visible.
+-- This program is the logo of RM Games. It is a car racing across the screan, leaving 
+-- behind smoke and the word "RM Games", which will stop in the middle of the screen
 -----------------------------------------------------------------------------------------
 -- SETUP
 -----------------------------------------------------------------------------------------

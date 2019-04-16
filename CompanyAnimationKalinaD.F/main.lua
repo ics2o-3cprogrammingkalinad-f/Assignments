@@ -489,9 +489,6 @@ end
 	companyName.x = 200
 	companyName.y = 300
 
-	-- make companyName start off as invisible/transparent
-	--companyName.alpha = 0
-
 	-- make it rotate face down a little bit
 	companyName:rotate(20)
 

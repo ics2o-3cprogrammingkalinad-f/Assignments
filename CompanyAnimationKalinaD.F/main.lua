@@ -450,15 +450,6 @@ function SpectatorLand10()
     timer.performWithDelay(500, SpectatorJump10)
 
 end
------------------------------------------------------------------------------------------
--- GLOBAL SCENE FUNCTIONS
------------------------------------------------------------------------------------------
-
--- The function called when the screen doesn't exist
-function scene:create( event )
-
-    -- Creating a group that associates objects with the scene
-    local sceneGroup = self.view
 
     -- set the background to be black
     display.setDefault("background", 0, 0, 0)
